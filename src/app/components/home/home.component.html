@@ -1,0 +1,41 @@
+<div class="container mt-3">
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput #searchBox id="search-box" (input)="search(searchBox.value)">
+        <button mat-icon-button matSuffix disabled>
+          <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button matSuffix *ngIf="searchBox.value !=''" (click)="searchClear();searchBox.value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <a routerLink="/create" mat-button class="float-end">New Entry <mat-icon>add</mat-icon></a>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngFor="let center of centers">
+    <mat-card-header>
+      <mat-card-title>
+        <a href="{{center.link}}" target="_blank" class="nav-link">
+          {{center.title}}
+        </a>
+      </mat-card-title>
+      <mat-card-subtitle class="flex-column">
+      <span *ngFor="let tag of center.tags">
+         <span class="badge text-bg-secondary me-2">
+           {{ tag }}
+         </span>
+      </span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions align="end">
+      <button mat-icon-button><mat-icon>edit</mat-icon></button>
+      <button mat-icon-button> <mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+
+
+</div>
+
